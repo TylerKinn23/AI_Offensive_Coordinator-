@@ -19,24 +19,24 @@ This project highlights:
 
 ## Project Architecture  
 
-gridiron_analytics/
-│
-├── cpp/ # C++ source code
-│ ├── include/ # Header files
-│ ├── play_features.cpp
-│ ├── CMakeLists.txt
-│ └── build/ # Compiled binaries (gitignored)
-│
-├── python/ # Python data science modules
-│ ├── data/ # Cleaned or raw datasets
-│ ├── notebooks/ # Jupyter notebooks
-│ │ ├── 01_exploration.ipynb
-│ │ └── 02_modeling.ipynb
-│ ├── train_model.py
-│ |── benchmark.py 
-| └── requirements.txt
-│
-└── README.md  
+gridiron_analytics/  
+│  
+├── cpp/ # C++ source code  
+│ ├── include/ # Header files  
+│ ├── play_features.cpp  
+│ ├── CMakeLists.txt  
+│ └── build/ # Compiled binaries (gitignored)  
+│  
+├── python/ # Python data science modules  
+│ ├── data/ # Cleaned or raw datasets  
+│ ├── notebooks/ # Jupyter notebooks  
+│ │ ├── 01_exploration.ipynb  
+│ │ └── 02_modeling.ipynb  
+│ ├── train_model.py  
+│ |── benchmark.py   
+| └── requirements.txt  
+│  
+└── README.md    
 
 ---  
 
