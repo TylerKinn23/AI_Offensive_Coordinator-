@@ -1,6 +1,6 @@
 # AI Offensive Coordinator: NFL Play Prediction  
 
-**This system will use Python and C++ to predict NFL offensive plays using data-driven modeling (in python) and high-performance data preprocessing (in C++)  
+**This system will use Python and C++ to predict NFL offensive plays using data-driven modeling (in python) and high-performance data preprocessing (in C++)**  
 
 ---  
 
@@ -19,7 +19,7 @@ This project highlights:
 
 ## Project Architecture  
 
-gridiron_analytics/  
+AI_Offensive_Coordinator/  
 │  
 ├── cpp/ # C++ source code  
 │ ├── include/ # Header files  
