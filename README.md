@@ -33,8 +33,8 @@ AI_Offensive_Coordinator/
 │ │ ├── 01_exploration.ipynb  
 │ │ └── 02_modeling.ipynb  
 │ ├── train_model.py  
-│ |── benchmark.py   
-| └── requirements.txt  
+│ ├── benchmark.py   
+│ └── requirements.txt  
 │  
 └── README.md    
 
