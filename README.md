@@ -21,20 +21,48 @@ This project highlights:
 
 AI_Offensive_Coordinator/  
 │  
-├── cpp/ # C++ source code  
-│ ├── include/ # Header files  
-│ ├── play_features.cpp  
-│ ├── CMakeLists.txt  
-│ └── build/ # Compiled binaries (gitignored)  
+├── cpp/                              # C++ source code  
+│   ├── include/                      # Header files  
+│   ├── play_features.cpp             # Feature engineering logic  
+│   ├── CMakeLists.txt  
+│   └── build/                        # Compiled binaries (gitignored)  
 │  
-├── python/ # Python data science modules  
-│ ├── data/ # Cleaned or raw datasets  
-│ ├── notebooks/ # Jupyter notebooks  
-│ │ ├── 01_exploration.ipynb  
-│ │ └── 02_modeling.ipynb  
-│ ├── train_model.py  
-│ ├── benchmark.py   
-│ └── requirements.txt  
+├── python/                           # Python ML pipeline  
+│   │  
+│   ├── data/                         # Raw and cleaned datasets  
+│   │  
+│   ├── notebooks/                    # Research and experimentation  
+│   │   ├── 01_exploration.ipynb  
+│   │   └── 02_modeling.ipynb  
+│   │  
+│   ├── configs/                      # Configurable pipeline parameters  
+│   │   ├── model_config.yaml  
+│   │   └── pipeline_config.yaml  
+│   │  
+│   ├── ingestion/                    # Data acquisition  
+│   │   └── load_data.py  
+│   │  
+│   ├── preprocessing/                # Data cleaning and preprocessing  
+│   │   └── clean_data.py  
+│   │  
+│   ├── features/                     # Feature engineering logic  
+│   │   └── build_features.py  
+│   │  
+│   ├── models/                       # Model training and inference  
+│   │   ├── train_model.py  
+│   │   └── predict.py  
+│   │  
+│   ├── evaluation/                   # Metrics and benchmarking  
+│   │   ├── metrics.py  
+│   │   └── benchmark.py  
+│   │  
+│   ├── artifacts/                    # Saved models and outputs  
+│   │   ├── trained_models/  
+│   │   └── metrics/  
+│   │  
+│   ├── run_pipeline.py               # End-to-end pipeline entrypoint  
+│   │  
+│   └── requirements.txt  
 │  
 └── README.md    
 
@@ -54,7 +82,7 @@ python -m venv venv
 source venv\\Scripts\\activate
 pip install -r requirements.txt
 ```  
-
+nex
 ### 3. Build the C++ Module  
 ```bash
 cd cpp
@@ -75,12 +103,84 @@ This project uses open football data from:
 - **NFLverse / nfl_data_py** https://github.com/nflverse/nfl_data_py  
 
 ## Machine Learning Pipeline  
-1. Data Acquisition: Fetch data via nfl_data_py.  
-2. Feature Engineering (C++): Compute situational and historical features for each play.  
-3. Model Training (Python):  
-- Train a random forest model.  
-- Predict Play Type.  
-4. Evaluation: Measure predictive accuracy and visualize tendencies by team.  
+
+The AI Offensive Coordinator system is designed as a modular end-to-end machine learning pipeline that separates data ingestion, preprocessing, feature engineering, modeling, and evaluation into distinct stages.  
+
+This architecture mirrors real-world production ML systems by emphasizing reproducibility, modularity, and clear separation of responsibilities between Python and C++.  
+
+### 1. Data Acquisition (Python)  
+Historical NFL play-by-play data is fetched using the nflverse ecosystem (`nfl_data_py`).  
+
+This stage is responsible for:  
+- Downloading raw play-by-play datasets  
+- Managing local dataset storage  
+- Validating required columns and schema consistency  
+- Preparing raw data for downstream preprocessing  
+
+### 2. Data Cleaning & Preprocessing (Python → C++)  
+Raw NFL data contains missing values, inconsistent fields, and sequential game-state information that must be standardized before modeling.  
+
+Initial cleaning and validation are handled in Python, while performance-critical feature extraction and sequential processing logic are delegated to C++.  
+
+The C++ preprocessing layer is designed to support:  
+- Efficient computation of rolling historical statistics    
+- Possession-aware feature generation  
+- Fast transformation of large play-by-play datasets  
+- Low-overhead feature extraction for future real-time inference scenarios  
+
+Python and C++ are integrated using Pybind11.  
+
+### 3. Feature Engineering (C++)  
+The feature engineering pipeline transforms cleaned play-by-play data into structured model-ready inputs.  
+
+Features include:  
+- Down and distance  
+- Field position  
+- Score differential  
+- Time remaining  
+- Offensive team tendencies  
+- Historical play-calling patterns  
+
+The output of this stage is a structured feature matrix used for model training and inference.  
+
+### 4. Model Training (Python)  
+Python is used for model experimentation, training, and evaluation using libraries such as XGBoost and Scikit-learn.  
+
+This stage is responsible for:  
+- Training predictive play-calling models  
+- Hyperparameter experimentation  
+- Cross-validation  
+- Model serialization and artifact generation  
+
+Model parameters and pipeline behavior are controlled through configurable YAML files to support reproducible experimentation.  
+
+### 5. Inference & Play Prediction (Python)  
+Once trained, the system can generate offensive play predictions for a given game situation.  
+
+The inference pipeline:  
+- Accepts situational football inputs  
+- Generates model-ready features  
+- Loads trained model artifacts  
+- Outputs predicted offensive play probabilities  
+
+Future versions of the project may support simulated real-time game-state inference.  
+
+### 6. Evaluation & Benchmarking (Python)  
+Model performance is evaluated using both statistical metrics and football-specific contextual analysis.  
+
+Evaluation includes:  
+- Classification accuracy  
+- Precision and recall  
+- Confusion matrices  
+- Team tendency visualization  
+- Feature importance analysis  
+- Benchmark comparisons between preprocessing implementations  
+
+### 7. Pipeline Orchestration  
+The complete system is executed through a unified pipeline entrypoint:  
+
+```bash
+python run_pipeline.py
 
 ## Author  
 **Tyler Kinn**  
