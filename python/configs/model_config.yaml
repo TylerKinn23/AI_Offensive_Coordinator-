@@ -1,0 +1,28 @@
+# This config file will allow users to change the hyperparameters used in the XGBoost model.
+
+---
+data:
+  train_path: "data/processed/train.csv"
+  val_path: "data/processed/train.csv"
+  target: "play_subtype"
+
+model_params:
+  # Core XGBoost parameters
+  objective: "multi:softmax"
+  num_class: 4
+  tree_method: "hist"
+  eval_metric: "mlogloss"
+
+  # Hyperparameters
+  learning rate: 
+  max_depth: 
+  subsample: 
+  colsample_bytree: 
+  lambda: 
+  alpha: 
+  n_estimators: 1000
+
+logging: 
+  verbose: true 
+  log_iteration_interval: 10
+...

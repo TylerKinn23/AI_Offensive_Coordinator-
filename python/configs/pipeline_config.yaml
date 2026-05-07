@@ -1,0 +1,54 @@
+# This file will allow users to configure different aspects of the ML pipeline for the AIOC project.
+#
+# This involves selecting what seasons are to be loaded for the model to train on,
+# what features are to be included in the model, data and model storage paths, test and validation
+# sizes and random seed.
+#
+# To tune model parameters see model_config.yaml
+---
+project_metadata: 
+  name: "AIOC"
+
+data: 
+  seasons: [2022, 2023, 2024]
+
+  paths:
+    raw_data_path: "data/raw"
+    processed_data_path: "data/processed"
+    models: "artifacts/trained_models"
+
+  file_naming: 
+    raw_data_name: 'raw_data_test_22_24'
+    processed_data_name: 'processed_data_test_22_24'
+  
+  split_strategy: 
+    test_size: 0.2
+    validation_size: 0.2
+    random_seed: 42
+
+model_settings:
+  model_name: "AIOC_v1"
+  save_format: "json"
+
+features: 
+  # Features pulled directly from NFLverse without modification
+  raw_nflverse:
+    - season
+    - week 
+    - game_id 
+    - posteam
+    - defteam
+    - qtr
+    - down
+    - ydstogo
+    - yardline_100
+    - score differential
+
+  # Derived historical features
+  historical_features: 
+    enabled: true
+    rolling_windows: 3 # note this represents the amount of most recent games to be used for historical feature calculation.
+
+# Defining target variable to ensure it is never dropped accidently
+target: "play_subtype"
+...

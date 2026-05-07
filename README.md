@@ -181,6 +181,7 @@ The complete system is executed through a unified pipeline entrypoint:
 
 ```bash
 python run_pipeline.py
+```
 
 ## Author  
 **Tyler Kinn**  
