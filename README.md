@@ -56,6 +56,13 @@ AI_Offensive_Coordinator/
 │   │   ├── metrics.py  
 │   │   └── benchmark.py  
 │   │  
+│   ├── tests/                        # Unit and integration testing  
+│   │   ├── test_load_data.py  
+│   │   ├── test_clean_data.py  
+│   │   ├── test_build_features.py  
+│   │   ├── test_train_model.py  
+│   │   └── test_pipeline.py  
+│   │  
 │   ├── artifacts/                    # Saved models and outputs  
 │   │   ├── trained_models/  
 │   │   └── metrics/  
@@ -64,7 +71,7 @@ AI_Offensive_Coordinator/
 │   │  
 │   └── requirements.txt  
 │  
-└── README.md    
+└── README.md  
 
 ---  
 
