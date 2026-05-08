@@ -29,7 +29,9 @@ AI_Offensive_Coordinator/
 │  
 ├── python/                           # Python ML pipeline  
 │   │  
-│   ├── data/                         # Raw and cleaned datasets  
+│   ├── data/                         # Raw and cleaned datasets 
+│   │   ├── processed  
+│   │   └── raw    
 │   │  
 │   ├── notebooks/                    # Research and experimentation  
 │   │   ├── 01_exploration.ipynb  
