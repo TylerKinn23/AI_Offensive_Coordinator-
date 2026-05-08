@@ -22,6 +22,18 @@ model_params:
   alpha: 
   n_estimators: 1000
 
+model_features: 
+  - season
+  - week
+  - qtr
+  - down
+  - ydstogo
+  - yardline_100
+  - score_differential
+  - def_pass_rate_hist
+  - avg_yds_per_play_alwd_hist
+  - avg_rush_per_play_alwd_hist
+
 logging: 
   verbose: true 
   log_iteration_interval: 10

@@ -31,8 +31,14 @@ model_settings:
   save_format: "json"
 
 features: 
+  # Features for preprocessing/dataset preparation. NOT final model features. However, all features needed at any point in the process should be included here.
+
   # Features pulled directly from NFLverse without modification
-  raw_nflverse:
+  required_raw_nflverse:
+    - play_type  
+    - run_location
+    - pass_length
+    - yards_gained
     - season
     - week 
     - game_id 
@@ -42,7 +48,7 @@ features:
     - down
     - ydstogo
     - yardline_100
-    - score differential
+    - score_differential
 
   # Derived historical features
   historical_features: 

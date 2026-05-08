@@ -58,7 +58,7 @@ def validate_data(data, config):
             missing.add(col)
 
     # Checking features in config file
-    for col in config['features']['raw_nflverse']:
+    for col in config['features']['required_raw_nflverse']:
         if col not in data.columns:
             missing.add(col)
 
