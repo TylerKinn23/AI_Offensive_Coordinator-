@@ -10,7 +10,7 @@ import pandas as pd
 import yaml
 import os
 
-def load_config():
+def load_pipeline_config():
     '''
     This function is responsible for loading in the config file. 
     '''
@@ -94,7 +94,7 @@ def main():
     '''
     try:
         # Getting config file
-        config = load_config()
+        config = load_pipeline_config()
 
         # Getting data
         data = fetch_data(config)

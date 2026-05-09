@@ -2,10 +2,10 @@ import pytest
 import textwrap
 import pandas as pd
 import os
-from ingestion.load_data import load_config, validate_data, save_raw_data
+from ingestion.load_data import load_pipeline_config, validate_data, save_raw_data
 from unittest.mock import patch, mock_open
 
-def test_load_config_data():
+def test_load_pipeline_config_data():
     '''
     This function is responsible for testing if data is loaded into the config.
     '''
@@ -20,13 +20,13 @@ def test_load_config_data():
 
     # Ensuring that the fake yaml file is opened instead of the real one
     with patch('builtins.open', mock_open(read_data = fake_yaml)):
-        config = load_config()
+        config = load_pipeline_config()
 
     # Checking function with assertions
     assert 'data' in config
     assert config['data']['seasons'] == [2022, 2023]
 
-def test_load_config_instance():
+def test_load_pipeline_config_instance():
     '''
     This function is responsible for testing if the config is instantiated as a dictionary.
     '''
@@ -41,12 +41,12 @@ def test_load_config_instance():
 
     # Ensuring that the fake yaml file is opened instead of the real one
     with patch('builtins.open', mock_open(read_data = fake_yaml)):
-        config = load_config()
+        config = load_pipeline_config()
 
     # Checking function with assertions
     assert isinstance(config, dict)
 
-def test_load_config_path():
+def test_load_pipeline_config_path():
     '''
     This function is responsible for testing if the config has a correct path.
     '''
@@ -61,7 +61,7 @@ def test_load_config_path():
 
     # Ensuring that the fake yaml file is opened instead of the real one
     with patch('builtins.open', mock_open(read_data = fake_yaml)):
-        config = load_config()
+        config = load_pipeline_config()
 
     # Checking function with assertions
     assert config['data']['paths']['raw_data_path'] == "data/raw"

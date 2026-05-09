@@ -14,11 +14,13 @@ data:
 
   paths:
     raw_data_path: "data/raw"
+    cleaned_data_path: "data/cleaned"
     processed_data_path: "data/processed"
     models: "artifacts/trained_models"
 
   file_naming: 
     raw_data_name: 'raw_data_test_22_24'
+    cleaned_data_name: 'clean_data_test_22_24'
     processed_data_name: 'processed_data_test_22_24'
   
   split_strategy: 
