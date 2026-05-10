@@ -84,6 +84,11 @@ def filter_rows(df):
     play_subtype = 'other' and ensure that the dataframe is not empty after filters have been applied.
     '''
 
+    # Ensuring validity of df.
+    if df is None or df.empty:
+        logging.info('Checking for none or empty dataframe')
+        raise ValueError('Filtered dataframe is empty or None')
+
     # Dropping rows with invalid target column.
     initial_count = len(df)
     df = df[df['play_subtype'] != 'other'].copy()
