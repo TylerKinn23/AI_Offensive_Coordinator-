@@ -51,6 +51,14 @@ features:
     - ydstogo
     - yardline_100
     - score_differential
+    - half_seconds_remaining
+    - game_seconds_remaining
+    - special
+    - two_point_attempt
+    - sack
+    - qb_scramble
+    - qb_kneel
+    - qb_spike
 
   # Derived historical features
   historical_features: 

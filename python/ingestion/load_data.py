@@ -33,8 +33,11 @@ def fetch_data(config):
     # Loading in config file and getting necessary seasons
     seasons = config['data']['seasons']
 
+    # Getting necessary columns
+    columns_to_keep = config['features']['required_raw_nflverse']
+
     # Loading in NFLVerse Data
-    raw_data = nfl.load_pbp(seasons).to_pandas()
+    raw_data = nfl.load_pbp(seasons).select(columns_to_keep).to_pandas()
     logging.info("Loading NFL pbp data")
 
     return raw_data
