@@ -117,6 +117,7 @@ def save_cleaned_data(df, config):
     df.to_csv(save_path, index = False)
 
 def main():
+    logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
     try:
         config = load_pipeline_config()
 

@@ -95,6 +95,7 @@ def main():
     '''
     This is the main logic of the program.
     '''
+    logging.basicConfig(level=logging.INFO, format='%(levelname)s: %(message)s')
     try:
         # Getting config file
         config = load_pipeline_config()

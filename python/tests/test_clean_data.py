@@ -1,3 +1,7 @@
+'''
+This function is responsible for testing the clean_data.py script.
+'''
+
 import pytest
 import textwrap
 from unittest.mock import patch, MagicMock
