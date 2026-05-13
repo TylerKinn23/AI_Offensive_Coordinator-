@@ -10,6 +10,7 @@ import numpy as np
 import os
 from preprocessing.clean_data import get_raw_data, initial_clean, classify_play, filter_rows, save_cleaned_data
 
+# Creating all necessary pytest fixtures to test cleaning functions
 @pytest.fixture
 def sample_pbp_data():
     '''
