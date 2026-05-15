@@ -150,7 +150,7 @@ def save_artifacts(model, encoder, params, feature_columns, X_test, y_test, mode
 
     # Get Paths
     base_dir = os.path.dirname(os.path.abspath(__file__))
-    save_path = os.path.join(base_dir, '..', pipeline_config['data']['paths']['models'], pipeline_config['data']['file_naming']['models'])
+    save_path = os.path.join(base_dir, '..', pipeline_config['data']['paths']['models'], pipeline_config['model_settings']['model_name'])
 
     # Generate timestamp
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -176,12 +176,12 @@ def save_artifacts(model, encoder, params, feature_columns, X_test, y_test, mode
     with open(params_path, 'w') as f:
         yaml.dump(params, f)
 
-    feature_list = list(feature_columns.columns)
+    feature_list = list(feature_columns)
     with open(features_path, 'w') as f:
         json.dump(feature_list, f, indent=4)
 
     X_test.to_csv(X_test_path, index = False)
-    y_test.to_csv(y_test_path, index = False)
+    pd.Series(y_test).to_csv(y_test_path, index = False)
 
     # Create and save model metadata
     metadata = {
@@ -217,7 +217,7 @@ def main():
         X_train, X_val, X_test, y_train, y_val, y_test = split_data(X, y, pipeline_config)
 
         if model_config['model_params']['tuning']['enabled']:
-            params = tune_hyperparameters(model, model_config, X_train, y_train)
+            params = tune_hyperparameters(model(), model_config, X_train, y_train)
         else:
             params = {
                 'n_estimators': model_config['model_params']['n_estimators'], 

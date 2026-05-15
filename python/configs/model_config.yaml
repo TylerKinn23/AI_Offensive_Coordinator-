@@ -2,8 +2,6 @@
 
 ---
 data:
-  train_path: "data/processed/train.csv"
-  val_path: "data/processed/train.csv"
   target: "play_subtype"
 
 model_params:
@@ -14,7 +12,23 @@ model_params:
   eval_metric: "mlogloss"
 
   # Hyperparameters
-  learning rate: 
+  tuning:
+    enabled: true
+    method: randomized
+    n_iter: 4
+    cv_folds: 3
+    n_jobs: 1
+
+  search_space:
+    n_estimators: [100, 500] # enter 2 numbers, (low, high) for randint
+    max_depth: [2, 3, 4, 5]
+    learning_rate: [.01, .05, .1]
+    subsample: [0.3, 0.6]
+    colsample_bytree: [0.25, 0.5]
+    lambda: [1, 2, 3]
+    alpha: [1, 2, 3]
+
+  learning_rate: 
   max_depth: 
   subsample: 
   colsample_bytree: 
@@ -30,9 +44,9 @@ model_features:
   - ydstogo
   - yardline_100
   - score_differential
-  - def_pass_rate_hist
-  - avg_yds_per_play_alwd_hist
-  - avg_rush_per_play_alwd_hist
+  - def_pass_rate_rolling
+  - avg_yds_pp_alwd_rolling
+  - avg_rush_yds_per_rush_alwd_rolling
 
 logging: 
   verbose: true 
