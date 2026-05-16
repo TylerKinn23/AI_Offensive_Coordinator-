@@ -150,7 +150,7 @@ def save_artifacts(model, encoder, params, feature_columns, X_test, y_test, mode
 
     # Get Paths
     base_dir = os.path.dirname(os.path.abspath(__file__))
-    save_path = os.path.join(base_dir, '..', pipeline_config['data']['paths']['models'], pipeline_config['model_settings']['model_name'])
+    save_path = os.path.join(base_dir, '..', pipeline_config['data']['paths']['models'])
 
     # Generate timestamp
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")

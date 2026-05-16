@@ -1,0 +1,12 @@
+[
+    "season",
+    "week",
+    "qtr",
+    "down",
+    "ydstogo",
+    "yardline_100",
+    "score_differential",
+    "def_pass_rate_rolling",
+    "avg_yds_pp_alwd_rolling",
+    "avg_rush_yds_per_rush_alwd_rolling"
+]

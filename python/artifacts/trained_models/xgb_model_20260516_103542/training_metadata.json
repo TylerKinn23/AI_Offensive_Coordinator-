@@ -1,0 +1,8 @@
+{
+    "timestamp": "20260516_103542",
+    "model_type": "XGBmulti:softmax",
+    "num_features": 10,
+    "test_size": 0.2,
+    "validation_size": 0.2,
+    "random_seed": 42
+}
