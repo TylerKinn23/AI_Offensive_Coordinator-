@@ -3,13 +3,13 @@ This script is responsible for allowing the user to make predictions with their 
 
 This script does not handle model evaluation. It serves as a resuable script to call trained models for prediction tasks.
 
-Note: When calling this script the format is "python - m models.train_model --model [artifacts/trained_models/(specific model here)]"
+Note: When calling this script the format is "python - m models.predict --model [artifacts/trained_models/(specific model here)]"
 '''
 
 import argparse
 import os
 import json
-import pickle
+import joblib
 import pandas as pd
 import logging
 from models.train_model import load_model_config
@@ -28,13 +28,13 @@ def load_artifacts(path):
     model_path = os.path.join(artifacts_folder_path, 'xgb_model.pkl')
 
     with open(model_path, 'rb') as f:
-        model = pickle.load(f)
+        model = joblib.load(f)
 
     # Retrieve label_encoder.pkl file.
     encoder_path = os.path.join(artifacts_folder_path, 'label_encoder.pkl')
 
     with open(encoder_path, 'rb') as f:
-        encoder = pickle.load(f)
+        encoder = joblib.load(f)
 
     # Retrieve feature_columns
     columns_path = os.path.join(artifacts_folder_path, 'feature_columns.json')
@@ -111,7 +111,7 @@ def main():
         decoded_prediction, confidence, class_probabilities = predict_play(model, input_df, encoder)
     
     except FileNotFoundError as e:
-        logging.error(f"CONFIG ERROR: Could not find YAML file. Details: {e}")
+        logging.error(f"CONFIG ERROR: Could not find Model file. Details: {e}")
         return 1
 
     except ValueError as e:

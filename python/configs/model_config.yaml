@@ -51,4 +51,16 @@ model_features:
 logging: 
   verbose: true 
   log_iteration_interval: 10
+
+prediction_input: # These are feature column values used to predict an individual play in predict.py
+  season: 2022
+  week: 9
+  qtr: 4
+  down: 4
+  ydstogo: 40
+  yardline_100: 60
+  score_differential: 5
+  def_pass_rate_rolling: .5
+  avg_yds_pp_alwd_rolling: 4
+  avg_rush_yds_per_rush_alwd_rolling: 5
 ...
